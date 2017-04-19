@@ -2,6 +2,7 @@
 
 const express = require('express');
 const multer = require('multer');
+const fs = require('fs');
 
 let upload = multer({ dest: '/tmp'});
 let app = express();
@@ -16,6 +17,9 @@ app.get('/', function (req, res) {
       `);
 });
 app.post('/', upload.single('file'), function (req, res) {
+  if (req.file) {
+    fs.unlink(req.file.path);
+  }
   res.json({
     'size': req.file.size
   });
