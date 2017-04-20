@@ -8,7 +8,6 @@ let upload = multer({ dest: '/tmp'});
 let app = express();
 
 app.get('/', function (req, res) {
-  console.log(req.host);
   res.send(`
     <p>Submit a file to view its filesize.</p>
     <form action="/" method="post" enctype="multipart/form-data">
